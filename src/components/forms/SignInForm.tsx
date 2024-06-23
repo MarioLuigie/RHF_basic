@@ -36,7 +36,7 @@ export default function SignInForm() {
 					label="Password"
 				/>
 			</div>
-			<Button label="Submit" />
+			<Button label="Submit" type='submit' />
 		</form>
 	)
 }
