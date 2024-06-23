@@ -24,9 +24,9 @@ export default function SignInForm() {
 
 	return (
 		<form onSubmit={handleSubmit}>
-			<div className="flex flex-col gap-5 items-end justify-center p-5">
+			<div className="flex flex-col gap-6 items-end justify-center p-5">
 				<Input
-					type="text"
+					type="email"
 					placeholder="Email"
 					label="Email"
 					value={data.email}
