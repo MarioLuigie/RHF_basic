@@ -4,16 +4,46 @@ import { useState } from 'react'
 import Input from '@/components/shared/Input'
 import Button from '@/components/shared/Button'
 
+interface IinitData {
+	email: string
+	password: string
+}
+
+interface IinitErrors {
+	email: string
+	password: string
+}
+
 export default function SignInForm() {
 	const initData = {
 		email: '',
 		password: '',
 	}
 
-	const [data, setData] = useState(initData)
+	const initErrors = {
+		email: '',
+		password: '',
+	}
+
+	const [data, setData] = useState<IinitData>(initData)
+	const [errors, setErrors] = useState<IinitErrors>(initErrors)
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
+
+		setErrors(initErrors)
+
+		if(!data.email.includes('@')) {
+			setErrors((prev) => ({...prev, email: 'Email must include @'}))
+			return
+		}
+
+		if(data.password.length < 8) {
+			setErrors((prev) => ({...prev, password: 'Enter min 8 characters'}))
+			return
+		}
+
+
 		setData(initData)
 		console.log('Form submitted successfully!', data)
 	}
@@ -24,14 +54,15 @@ export default function SignInForm() {
 
 	return (
 		<form onSubmit={handleSubmit}>
-			<div className="flex flex-col gap-6 items-end justify-center p-5">
+			<div className="flex flex-col gap-10 items-end justify-center p-5 pb-20">
 				<Input
-					type="email"
+					type="text"
 					placeholder="Email"
 					label="Email"
 					value={data.email}
 					onChange={handleChange}
 					name="email"
+					error={errors.email}
 				/>
 				<Input
 					type="password"
@@ -40,6 +71,7 @@ export default function SignInForm() {
 					value={data.password}
 					onChange={handleChange}
 					name="password"
+					error={errors.password}
 				/>
 			</div>
 			<Button label='Submit' />
