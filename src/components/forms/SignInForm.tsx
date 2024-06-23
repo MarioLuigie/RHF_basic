@@ -14,8 +14,8 @@ export default function SignInForm() {
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
-		console.log('Form submitted successfully!', data)
 		setData(initData)
+		console.log('Form submitted successfully!', data)
 	}
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
