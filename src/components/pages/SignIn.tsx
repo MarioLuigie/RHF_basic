@@ -3,7 +3,7 @@ import Paper from '@/components/shared/Paper'
 
 export default function SignIn() {
 	return (
-		<div className="flex-center gap-6 ">
+		<div className="flex-center gap-6 grow">
 			<Paper>
 				<p className="w-full bg-black p-5 text-[45px] font-bold text-white">
 					Sign in
