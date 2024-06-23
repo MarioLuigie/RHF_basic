@@ -1,6 +1,7 @@
 'use client'
 
 import Input from '@/components/shared/Input'
+import Button from '@/components/shared/Button'
 
 export default function SignInForm() {
 	const handleSubmit = () => {}
@@ -11,6 +12,7 @@ export default function SignInForm() {
 				<Input type="text" placeholder="Email" label="Email"/>
 				<Input type="password" placeholder="Password" label="Password"/>
 			</div>
+			<Button label='Submit'/>
 		</form>
 	)
 }
