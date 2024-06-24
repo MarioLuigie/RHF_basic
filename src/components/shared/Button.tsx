@@ -14,7 +14,9 @@ export default function Button({
 			<button
 				disabled={disabled}
 				type={type}
-				className="flex-center p-3 w-full bg-gray-500 text-white rounded-2xl"
+				className={`flex-center p-3 w-full ${
+					!disabled ? 'bg-gray-500' : 'bg-gray-400'
+				} text-white rounded-2xl`}
 				onClick={onClick}
 			>
 				{label}

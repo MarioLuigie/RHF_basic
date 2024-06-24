@@ -27,7 +27,7 @@ export default function SignInForm() {
 
 	const onSubmit: SubmitHandler<FormFieldsType> = async (data) => {
 		try {
-			await new Promise((resolve) => setTimeout(resolve, 1000))
+			await new Promise((resolve) => setTimeout(resolve, 2000))
 			console.log(data)
 			throw new Error()
 		} catch (err) {
