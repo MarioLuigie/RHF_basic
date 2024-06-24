@@ -24,7 +24,7 @@ export default function SignInForm() {
 		resolver: zodResolver(signInSchema),
 	})
 
-	const onSubmit: SubmitHandler<FormFieldsType> = async (data) => {
+	const onSubmit: SubmitHandler<FormFieldsType> = async (data: FormFieldsType) => {
 		try {
 			await new Promise((resolve) => setTimeout(resolve, 2000))
 			console.log(data)
