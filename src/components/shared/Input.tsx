@@ -28,7 +28,7 @@ export default function Input({
 						onChange={onChange}
 						name={name}
 					/>
-					<p className="text-red-400 text-xs w-full absolute bottom-[-25px] left-[17px] z-40">{error}</p>
+					{error && <p className="text-red-400 text-xs w-full absolute bottom-[-25px] left-[17px] z-40">{error}</p>}
 				</div>
 			</div>
 		</>
