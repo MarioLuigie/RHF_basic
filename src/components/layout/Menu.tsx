@@ -25,7 +25,7 @@ const MenuItem = ({ link }: { link: Ilink }) => {
 export default function Menu() {
 	return (
 		<nav className='pr-5'>
-			<ul className="flex max-md:flex-col md:items-center gap-6">
+			<ul className="flex gap-6">
 				{nav.map((link) => (
 					<MenuItem key={link.route} link={link} />
 				))}

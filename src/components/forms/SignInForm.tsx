@@ -46,7 +46,7 @@ export default function SignInForm() {
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
-			<div className="flex flex-col gap-10 items-end justify-center p-10 relative">
+			<div className="flex flex-col gap-[40px] items-end justify-center p-5 relative w-full">
 				<Input
 					register={register('email')}
 					type="text"
@@ -61,17 +61,26 @@ export default function SignInForm() {
 					label="Password"
 					errors={errors.password}
 				/>
+				<Input
+					register={register('confirmPassword')}
+					type="password"
+					placeholder="Confirm password"
+					label="Confirm Password"
+					errors={errors.confirmPassword}
+				/>
 				{/* {errors.root && (
 					<p className="text-red-400 text-xs w-full absolute bottom-0 left-0 text-center z-40">
 						{errors.root.message}
 					</p>
 				)} */}
 			</div>
-			<Button
-				disabled={isSubmitting}
-				label={isSubmitting ? 'Submitting...' : 'Submit'}
-				type="submit"
-			/>
+			<div className='pt-[20px]'>
+				<Button
+					disabled={isSubmitting}
+					label={isSubmitting ? 'Submitting...' : 'Submit'}
+					type="submit"
+				/>
+			</div>
 		</form>
 	)
 }
@@ -152,5 +161,5 @@ export default function SignInForm() {
 
 // export type FormFieldsType = z.infer<typeof signInSchema>
 
-//w Zod wszystkie pola domyslnie są wymagane. Jesli jakies pole nie jest wymagane w projekcie to 
+//w Zod wszystkie pola domyslnie są wymagane. Jesli jakies pole nie jest wymagane w projekcie to
 //zaznaczyc optional() czyli: name: z.string().optional()

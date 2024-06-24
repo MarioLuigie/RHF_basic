@@ -16,7 +16,7 @@ export default function Button({
 				type={type}
 				className={`flex-center p-3 w-full ${
 					!disabled ? 'bg-gray-500' : 'bg-gray-400'
-				} text-white rounded-2xl`}
+				} text-white rounded-[50px] shadow-xl`}
 				onClick={onClick}
 			>
 				{label}

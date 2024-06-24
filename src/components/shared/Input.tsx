@@ -15,14 +15,16 @@ export default function Input({
 }) {
 	return (
 		<>
-			<div className="gap-4 flex items-center justify-end w-full">
-				<label className="w-[100px] flex justify-end">{label}</label>
+			<div className="gap-2 flex flex-col w-full">
+				<label className="w-[200px] flex justify-start text-sm text-gray-500">
+					{label}
+				</label>
 				<div className="relative">
 					<input
 						{...register}
 						type={type}
 						placeholder={placeholder}
-						className="p-2 pl-4 border border-gray-800 rounded-[50px] w-full"
+						className="p-2 pl-4 border rounded-[50px] w-full shadow-xl focus:outline-none focus:ring-gray-500 focus:border-gray-500"
 					/>
 					{errors && (
 						<p className="text-red-400 text-xs w-full absolute top-[45px] left-[17px] z-40">
