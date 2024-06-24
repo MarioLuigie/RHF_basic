@@ -1,6 +1,7 @@
 'use client'
 //modules
 import { useForm, SubmitHandler } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 //lib
 import { signInSchema } from '@/lib/utils/zod'
 import { FormFieldsType } from '@/lib/utils/zod'
@@ -21,6 +22,7 @@ export default function SignInForm() {
 			email: 'test@test.com',
 			password: 'test',
 		},
+		resolver: zodResolver(signInSchema),
 	})
 
 	const onSubmit: SubmitHandler<FormFieldsType> = async (data) => {
@@ -45,26 +47,14 @@ export default function SignInForm() {
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<div className="flex flex-col gap-10 items-end justify-center p-10 relative">
 				<Input
-					register={register('email', {
-						required: 'Email is required!',
-						validate: (value) => {
-							if (!value.includes('@')) {
-								return 'Email must include @'
-							} else {
-								return true
-							}
-						},
-					})}
+					register={register('email')}
 					type="text"
 					placeholder="Email"
 					label="Email"
 					errors={errors.email}
 				/>
 				<Input
-					register={register('password', {
-						required: 'Password is required!',
-						minLength: { value: 8, message: 'Enter min 8 characters!' },
-					})}
+					register={register('password')}
 					type="password"
 					placeholder="Password"
 					label="Password"
@@ -138,17 +128,15 @@ export default function SignInForm() {
 
 // defaultValues to keyword/słowo kluczowe
 
-
 // @HOOKFORM/RESOLVERS
 //@hookform/resolvers polega na ułatwieniu walidacji danych formularza poprzez integrację z popularnymi bibliotekami walidacyjnymi. Dzięki temu możesz korzystać z zaawansowanych schematów walidacyjnych, które są łatwe do zdefiniowania i utrzymania.
 //@hookform/resolvers oferuje gotowe do użycia integracje z popularnymi bibliotekami walidacyjnymi, takimi jak:
 //Zod: Nowoczesna biblioteka o zwięzłej składni, która zyskuje na popularności.
 //Dzięki @hookform/resolvers możesz z łatwością podłączyć wybraną bibliotekę walidacyjną do React Hook Form bez potrzeby ręcznego pisania logiki walidacyjnej. Resolvers zapewniają, że walidacja będzie przebiegać w sposób płynny i zintegrowany.
 
-
 // ZOD INSTALACJA
 // Jesli stosuje ZOD to moge pozbyc sie okreslenia typu danych formularza za pomoca typescript i wykonac inferencje ze schematu
-//zoda czyli zamiast: 
+//zoda czyli zamiast:
 // type FormFields = {
 // 	email: string
 // 	password: string
@@ -162,3 +150,6 @@ export default function SignInForm() {
 // })
 
 // export type FormFieldsType = z.infer<typeof signInSchema>
+
+//w Zod wszystkie pola domyslnie są wymagane. Jesli jakies pole nie jest wymagane w projekcie to 
+//zaznaczyc optional() czyli: name: z.string().optional()

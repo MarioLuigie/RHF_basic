@@ -25,7 +25,7 @@ export default function Input({
 						className="p-2 pl-4 border border-gray-800 rounded-[50px] w-full"
 					/>
 					{errors && (
-						<p className="text-red-400 text-xs w-full absolute bottom-[-20px] left-[17px] z-40">
+						<p className="text-red-400 text-xs w-full absolute top-[45px] left-[17px] z-40">
 							{errors.message}
 						</p>
 					)}
