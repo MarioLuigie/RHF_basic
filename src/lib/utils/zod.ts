@@ -12,3 +12,7 @@ export const signInSchema = z
 	})
 
 export type FormFieldsType = z.infer<typeof signInSchema>
+
+
+//Metoda refine: Dodajesz niestandardową walidację, która sprawdza, czy pole password pasuje do pola confirmPassword. Jeśli nie, błąd jest przypisany do pola confirmPassword.
+//używasz metody .refine() bezpośrednio na polu confirmPassword, podczas gdy powinna być użyta na poziomie całego obiektu, aby mieć dostęp do obu pól (password i confirmPassword). Metoda .refine() musi być użyta na schemacie obiektu, a nie na pojedynczym polu.
