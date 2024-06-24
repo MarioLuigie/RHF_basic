@@ -21,8 +21,8 @@ export default function SignInForm() {
 		formState: { errors, isSubmitting },
 	} = useForm<FormFields>({
 		defaultValues: {
-			email: 'abc',
-			password: '123',
+			email: 'test@test.com',
+			password: 'test',
 		},
 	})
 
