@@ -5,7 +5,7 @@ export default function SignIn() {
 	return (
 		<div className="flex-center gap-6 grow">
 			<Paper>
-				<p className="w-full bg-black p-5 text-[45px] font-bold text-white">
+				<p className="w-full p-5 text-[45px] font-bold text-gray-500">
 					Sign in
 				</p>
 				<div className="pt-10">

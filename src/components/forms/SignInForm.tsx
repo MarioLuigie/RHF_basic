@@ -19,24 +19,34 @@ export default function SignInForm() {
 		handleSubmit,
 		setError,
 		formState: { errors, isSubmitting },
-	} = useForm<FormFields>()
+	} = useForm<FormFields>({
+		defaultValues: {
+			email: 'abc',
+			password: '123',
+		},
+	})
 
 	const onSubmit: SubmitHandler<FormFields> = async (data) => {
 		try {
 			await new Promise((resolve) => setTimeout(resolve, 1000))
 			console.log(data)
-			throw new Error
+			throw new Error()
 		} catch (err) {
 			console.error(err)
+			//Złapanie błedu na wskazanego pola
 			setError('email', {
-				message: 'This email is already taken'
+				message: 'Backend: This email is already taken',
 			})
+			//Złapanie błędu dla całego formularza
+			// setError('root', {
+			// 	message: 'This form is invalid',
+			// })
 		}
 	}
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
-			<div className="flex flex-col gap-10 items-end justify-center p-10">
+			<div className="flex flex-col gap-10 items-end justify-center p-10 relative">
 				<Input
 					register={register('email', {
 						required: 'Email is required!',
@@ -63,6 +73,11 @@ export default function SignInForm() {
 					label="Password"
 					errors={errors.password}
 				/>
+				{/* {errors.root && (
+					<p className="text-red-400 text-xs w-full absolute bottom-0 left-0 text-center z-40">
+						{errors.root.message}
+					</p>
+				)} */}
 			</div>
 			<Button
 				disabled={isSubmitting}
@@ -102,3 +117,26 @@ export default function SignInForm() {
 // 	</form>
 // )
 // }
+
+// 1. Przechwycenie błędu z backendu dla konkretnego pola formularza (okreslenie name)
+//			setError('email', {
+//			message: 'This email is already taken',
+//			})
+// Wykorzystanie funkcji setError() z useForm w celu przechwycenia errora z backendu kiedy backend zawiedzie
+// i zapisanie go do stanu błędu w useForm
+
+// 2. Przechwycenie błędu z backendu dla całego formularza (ogólne)
+//			setError('root', {
+//			message: 'This form is invalid',
+//			})
+
+// OKREŚLENIE WARTOŚCI DOMYŚLNYCH DLA FORMULARZA
+// const {
+// } = useForm<FormFields>({
+// 	defaultValues: {
+// 		email: 'abc',
+// 		password: '123',
+// 	},
+// })
+
+// defaultValues to keyword/słowo kluczowe
