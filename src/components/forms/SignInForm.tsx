@@ -3,8 +3,7 @@
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 //lib
-import { signInSchema } from '@/lib/utils/zod'
-import { FormFieldsType } from '@/lib/utils/zod'
+import { signInSchema, FormFieldsType } from '@/lib/utils/zod'
 //components
 import Input from '@/components/shared/Input'
 import Button from '@/components/shared/Button'
@@ -17,10 +16,10 @@ export default function SignInForm() {
 		handleSubmit,
 		setError,
 		formState: { errors, isSubmitting },
+		reset,
 	} = useForm<FormFieldsType>({
 		defaultValues: {
-			email: 'test@test.com',
-			password: 'test',
+			email: 'example@example.com',
 		},
 		resolver: zodResolver(signInSchema),
 	})
@@ -29,7 +28,9 @@ export default function SignInForm() {
 		try {
 			await new Promise((resolve) => setTimeout(resolve, 2000))
 			console.log(data)
-			throw new Error()
+
+			reset()
+			// throw new Error()
 		} catch (err) {
 			console.error(err)
 			//Złapanie błedu na wskazanego pola
