@@ -9,6 +9,7 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 type FormFields = {
 	email: string
 	password: string
+	confirmPassword: string
 }
 
 export default function SignInForm() {
@@ -19,10 +20,11 @@ export default function SignInForm() {
 		handleSubmit,
 		setError,
 		formState: { errors, isSubmitting },
+		reset,
+		getValues,
 	} = useForm<FormFields>({
 		defaultValues: {
 			email: 'test@test.com',
-			password: 'test',
 		},
 	})
 
@@ -30,7 +32,8 @@ export default function SignInForm() {
 		try {
 			await new Promise((resolve) => setTimeout(resolve, 1000))
 			console.log(data)
-			throw new Error()
+			// throw new Error()
+			reset()
 		} catch (err) {
 			console.error(err)
 			//Złapanie błedu na wskazanego pola
@@ -72,6 +75,17 @@ export default function SignInForm() {
 					placeholder="Password"
 					label="Password"
 					errors={errors.password}
+				/>
+				<Input
+					register={register('confirmPassword', {
+						required: 'Confirm password is required!',
+						minLength: { value: 8, message: 'Enter min 8 characters!' },
+						validate: (value) => value === getValues('password') || 'Password must match'
+					})}
+					type="password"
+					placeholder="Confirm password"
+					label="Confirm password"
+					errors={errors.confirmPassword}
 				/>
 				{/* {errors.root && (
 					<p className="text-red-400 text-xs w-full absolute bottom-0 left-0 text-center z-40">
