@@ -140,3 +140,13 @@ export default function SignInForm() {
 // })
 
 // defaultValues to keyword/słowo kluczowe
+
+
+// @HOOKFORM/RESOLVERS
+//@hookform/resolvers polega na ułatwieniu walidacji danych formularza poprzez integrację z popularnymi bibliotekami walidacyjnymi. Dzięki temu możesz korzystać z zaawansowanych schematów walidacyjnych, które są łatwe do zdefiniowania i utrzymania.
+//@hookform/resolvers oferuje gotowe do użycia integracje z popularnymi bibliotekami walidacyjnymi, takimi jak:
+//Zod: Nowoczesna biblioteka o zwięzłej składni, która zyskuje na popularności.
+//Dzięki @hookform/resolvers możesz z łatwością podłączyć wybraną bibliotekę walidacyjną do React Hook Form bez potrzeby ręcznego pisania logiki walidacyjnej. Resolvers zapewniają, że walidacja będzie przebiegać w sposób płynny i zintegrowany.
+
+
+// ZOD INSTALACJA
