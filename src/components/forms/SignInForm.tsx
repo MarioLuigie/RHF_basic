@@ -19,7 +19,7 @@ export default function SignInForm() {
 		email: '',
 		password: '',
 	}
-
+// Init errors tablica stringów albo obiektem, ktorego pola posiadaja tablice stringów
 	const initErrors = {
 		email: '',
 		password: '',
