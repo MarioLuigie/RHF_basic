@@ -1,15 +1,12 @@
 'use client'
-
+//modules
+import { useForm, SubmitHandler } from 'react-hook-form'
+//lib
+import { signInSchema } from '@/lib/utils/zod'
+import { FormFieldsType } from '@/lib/utils/zod'
+//components
 import Input from '@/components/shared/Input'
 import Button from '@/components/shared/Button'
-
-import { useForm, SubmitHandler } from 'react-hook-form'
-
-// Określenie typu dla pól/inputów formularza
-type FormFields = {
-	email: string
-	password: string
-}
 
 export default function SignInForm() {
 	// Zbudowanie instancji obiektu formularza z react hook form 'const form = useForm<FormFields>()'
@@ -19,14 +16,14 @@ export default function SignInForm() {
 		handleSubmit,
 		setError,
 		formState: { errors, isSubmitting },
-	} = useForm<FormFields>({
+	} = useForm<FormFieldsType>({
 		defaultValues: {
 			email: 'test@test.com',
 			password: 'test',
 		},
 	})
 
-	const onSubmit: SubmitHandler<FormFields> = async (data) => {
+	const onSubmit: SubmitHandler<FormFieldsType> = async (data) => {
 		try {
 			await new Promise((resolve) => setTimeout(resolve, 1000))
 			console.log(data)
@@ -150,3 +147,18 @@ export default function SignInForm() {
 
 
 // ZOD INSTALACJA
+// Jesli stosuje ZOD to moge pozbyc sie okreslenia typu danych formularza za pomoca typescript i wykonac inferencje ze schematu
+//zoda czyli zamiast: 
+// type FormFields = {
+// 	email: string
+// 	password: string
+// }
+//wykonuje:
+// import { z } from 'zod'
+
+// export const signInSchema = z.object({
+//   email: z.string().email(),
+//   password: z.string().min(8)
+// })
+
+// export type FormFieldsType = z.infer<typeof signInSchema>
