@@ -26,8 +26,30 @@ export default function SignInForm() {
 
 	const onSubmit: SubmitHandler<FormFieldsType> = async (data: FormFieldsType) => {
 		try {
-			await new Promise((resolve) => setTimeout(resolve, 2000))
-			console.log(data)
+			// await new Promise((resolve) => setTimeout(resolve, 2000))
+			// console.log(data)
+
+			const res = await fetch('/api/signIn', {
+				method: 'POST',
+				body: JSON.stringify(data),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			})
+
+			const resData = await res.json()
+
+			if(!res.ok) {
+				alert('Submitting form failed')
+				return
+			}
+
+			if(resData.errors) {
+				const errors = resData.errors
+				if(errors.email) {
+					alert(errors.email)
+				}
+			}
 
 			reset()
 			// throw new Error()
