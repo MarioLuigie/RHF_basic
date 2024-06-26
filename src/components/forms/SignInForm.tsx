@@ -31,18 +31,22 @@ export default function SignInForm() {
 
 			const res = await fetch('/api/signIn', {
 				method: 'POST',
-				body: JSON.stringify(data),
+				body: JSON.stringify({
+					email: 'testtestcom',
+					password: '12345678',
+					confirmPassword: '1234567890'
+				}),
 				headers: {
 					'Content-Type': 'application/json'
 				}
 			})
 
-			const resData = await res.json()
-
 			if(!res.ok) {
 				alert('Submitting form failed')
 				return
 			}
+			
+			const resData = await res.json()
 
 			if(resData.errors) {
 				const errors = resData.errors
@@ -51,7 +55,9 @@ export default function SignInForm() {
 				}
 			}
 
-			reset()
+			console.log(resData);
+
+			// reset()
 			// throw new Error()
 		} catch (err) {
 			console.error(err)
