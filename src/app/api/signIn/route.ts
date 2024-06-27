@@ -74,12 +74,18 @@ export async function POST(req: Request) {
 		})
 
 	}
+
+	let newData = {}
+
+	if(result.success) {
+		newData = result.data
+	}
 	
 	// return NextResponse.json({ errors: result.error.errors }, { status: 400 })
 	return NextResponse.json(
 		Object.keys(zodErrors).length > 0 
-		? { errors: zodErrors } 
-		: { success: true }
+		? { success: false, errors: zodErrors } 
+		: { success: true, data: newData }
 	)
 
 	// return new Response(JSON.stringify({}), { status: 201 })

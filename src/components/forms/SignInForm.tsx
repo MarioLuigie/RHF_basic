@@ -31,15 +31,23 @@ export default function SignInForm() {
 
 			const res = await fetch('/api/signIn', {
 				method: 'POST',
-				body: JSON.stringify({
-					email: 'testtestcom',
-					password: '12345678',
-					confirmPassword: '1234567890'
-				}),
+				body: JSON.stringify(data),
 				headers: {
 					'Content-Type': 'application/json'
 				}
 			})
+
+			// const res = await fetch('/api/signIn', {
+			// 	method: 'POST',
+			// 	body: JSON.stringify({
+			// 		email: 'testtestcom',
+			// 		password: '12345678',
+			// 		confirmPassword: '1234567890'
+			// 	}),
+			// 	headers: {
+			// 		'Content-Type': 'application/json'
+			// 	}
+			// })
 
 			if(!res.ok) {
 				alert('Submitting form failed')
